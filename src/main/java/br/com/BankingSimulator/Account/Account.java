@@ -13,51 +13,55 @@ public class Account {
     private  long id;
     private String fullName;
 
-    private int salary;
-    private int balance;
+    private double salary;
+    private double balance;
 
     public Account newAccount(){
         CreateParameter createParameter = new CreateParameter();
         this.fullName = createParameter.createString("Full name: ");
-        this.salary = createParameter.createInt("Salary U$: ");
+        this.salary = createParameter.createDouble("Salary U$: ");
         return this;
-    }
-
-    public Account  deposited(String message) {
-        CreateParameter createParameter = new CreateParameter();
-        this.balance +=  createParameter.createInt(message);
-        return this ;
-    }
-
-    public double getBalance() {
-        return balance;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setBalance(int balance) {
+//    public Account  deposited(String message) {
+//        CreateParameter createParameter = new CreateParameter();
+//        this.balance +=  createParameter.createInt(message);
+//        return this ;
+//    }
+
+    public void setBalance(double balance) {
         this.balance = balance;
     }
+
+//    public Account withdrawMoney(String message){
+//        CreateParameter createParameter = new CreateParameter();
+//        int withdraw = createParameter.createInt(message);
+//
+//        if (withdraw < this.balance){
+//            this.balance -= withdraw;
+//        }else {
+//            System.out.println("The value what you want  withdraw is more what you have in the account.");
+//        }
+//        return this;
+//    }
+
+
+
+
 }

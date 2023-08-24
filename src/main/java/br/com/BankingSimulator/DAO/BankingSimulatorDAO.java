@@ -9,7 +9,8 @@ import java.util.List;
 
 public class BankingSimulatorDAO {
     private EntityManager entityManager;
-
+    private CreateParameter createParameter = new CreateParameter();
+    private Account account = new Account();
     public BankingSimulatorDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -32,24 +33,46 @@ public class BankingSimulatorDAO {
 
     }
 
-    public Account findID(long id) {
+    public Account findID() {
         CreateParameter createParameter = new CreateParameter();
-
+        long id = createParameter.createInt("Type ID:");
         return entityManager.find(Account.class, id);
     }
 
     public void Deposit() {
+
         showAccounts();
-        CreateParameter createParameter = new CreateParameter();
-        int id = createParameter.createInt("Type ID:");
-        Account account = findID(id);
-        if (account != null) {
-//            int depositar = createParameter.createInt();
-            entityManager.getTransaction().begin();
-            account.deposited("Insert the value what you want to deposit.U$ ");
+        entityManager.getTransaction().begin();
+        Account selectedAccount = findID();
+        if (selectedAccount != null) {
+//
+            double amount = selectedAccount.getBalance();
+            double withdraw = createParameter.createDouble("Insert the value what you want to deposit.U$ ");
+            double newBalance = amount + withdraw;
+            selectedAccount.setBalance(newBalance);
             entityManager.getTransaction().commit();
         } else {
-            System.out.println("This account is not find!");
+            entityManager.getTransaction().rollback();
+            System.out.println("Account not found!");
+        }
+    }
+
+    public  void Withdraw(){
+        showAccounts();
+        entityManager.getTransaction().begin();
+        Account selectedAccount = findID();
+        if (selectedAccount != null){
+
+            double amount = selectedAccount.getBalance();
+            double withdraw = createParameter.createInt("Insert the value what you want to withdraw.U$ ");
+            double newBalance = amount - withdraw;
+            selectedAccount.setBalance(newBalance);
+
+            entityManager.getTransaction().commit();
+
+        } else {
+            entityManager.getTransaction().rollback();
+            System.out.println("Account not found!");
         }
     }
 }
