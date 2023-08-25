@@ -1,6 +1,8 @@
 package br.com.BankingSimulator.Main;
 
 import br.com.BankingSimulator.Account.Account;
+import br.com.BankingSimulator.Account.AccountType;
+import br.com.BankingSimulator.DAO.AccountTypeDAO;
 import br.com.BankingSimulator.DAO.BankingSimulatorDAO;
 import br.com.BankingSimulator.Functions.CreateParameter;
 import br.com.BankingSimulator.Functions.Style;
@@ -13,8 +15,10 @@ public class Main {
 
         CreateParameter createParameter = new CreateParameter();
         Style style = new Style();
-        Account account = new Account();
+
+        AccountType accountType = new AccountType();
         EntityManager entityManager = new JPAUtil().getEntityManager();
+        AccountTypeDAO accountTypeDAO = new AccountTypeDAO(entityManager);
         BankingSimulatorDAO bankingSimulatorDAO = new BankingSimulatorDAO(entityManager);
 
         while (true) {
@@ -23,9 +27,13 @@ public class Main {
 
             switch (option) {
                 case 1:
-
                     entityManager.getTransaction().begin();
-                    bankingSimulatorDAO.insert(account.newAccount());
+                    Account account = new Account();
+                    account.newAccount();
+                    accountTypeDAO.showAccountTypes();
+                    AccountType selectedAccountType = accountTypeDAO.findID();
+                    account.setAccountType(selectedAccountType);
+                    bankingSimulatorDAO.insert(account);
                     entityManager.getTransaction().commit();
                     break;
 
@@ -47,7 +55,7 @@ public class Main {
 
                     System.out.println("Exit of the system,bye");
                     entityManager.close();
-                    break;
+                    return;
 
                 default:
 
@@ -55,9 +63,9 @@ public class Main {
 
             }
 
-            if (option == 5) {
-                break;
-            }
         }
+
     }
+
+
 }

@@ -1,6 +1,7 @@
 package br.com.BankingSimulator.DAO;
 
 import br.com.BankingSimulator.Account.Account;
+import br.com.BankingSimulator.Account.AccountType;
 import br.com.BankingSimulator.Functions.CreateParameter;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,9 @@ public class BankingSimulatorDAO {
     }
 
     public void insert(Account account) {
+
         entityManager.persist(account);
+
     }
 
     public void showAccounts() {
@@ -27,6 +30,9 @@ public class BankingSimulatorDAO {
         for (Account account : accounts) {
             System.out.println(account.getId());
             System.out.println(account.getFullName());
+            System.out.println(account.getAccountType());
+
+            showAccountTypes();
 
         }
 
@@ -75,4 +81,16 @@ public class BankingSimulatorDAO {
             System.out.println("Account not found!");
         }
     }
+
+    public void showAccountTypes() {
+        String jpql = "SELECT AT FROM AccountType AT ";
+        Query query = entityManager.createQuery(jpql, AccountType.class);
+        List<AccountType> accounts = query.getResultList();
+
+        for (AccountType accountType : accounts) {
+            System.out.println(accountType.getId());
+
+
+
+        }}
 }
