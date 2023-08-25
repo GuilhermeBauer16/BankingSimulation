@@ -20,34 +20,43 @@ public class AccountTypeDAO {
 
     public AccountType findID() {
         CreateParameter createParameter = new CreateParameter();
-        long id = createParameter.createInt("Type ID:");
-        return entityManager.find(AccountType.class, id);
-    }
-    public void accountType() {
-
-
-        AccountType selectedAccount = findID();
-        if (selectedAccount != null) {
-            selectedAccount.getAccountType();
-
-        } else {
-            entityManager.getTransaction().rollback();
-            System.out.println("Account not found!");
-        }
-
-    }
-
-    public void showAccountTypes() {
         String jpql = "SELECT AT FROM AccountType AT ";
         Query query = entityManager.createQuery(jpql, AccountType.class);
         List<AccountType> accountTypes = query.getResultList();
+        long id = 0l;
 
-        for (AccountType accountType : accountTypes) {
-            System.out.println(accountType.getId());
-            System.out.println(accountType.toString());
+        while (true) {
+            id = createParameter.createInt("Type ID: ");
+            if (id > accountTypes.size()) {
 
+                System.out.println("Invalid account type ID!");
+
+            } else {
+                break;
+            }
 
         }
-}
+        return entityManager.find(AccountType.class, id);
+    }
+
+
+    public void showAccountTypes() {
+
+        String jpql = "SELECT AT FROM AccountType AT ";
+        Query query = entityManager.createQuery(jpql, AccountType.class);
+        List<AccountType> accountTypes = query.getResultList();
+        System.out.println("=".repeat(100));
+        System.out.printf("| %-4s | %-17s |%n", "ID", "Account type");
+        System.out.println("=".repeat(100));
+
+        for (AccountType accountType : accountTypes) {
+
+            System.out.printf("| %-4s | %-17s |%n", accountType.getId(), accountType.toString());
+
+        }
+        System.out.println("=".repeat(100));
+    }
+
+
 
 }

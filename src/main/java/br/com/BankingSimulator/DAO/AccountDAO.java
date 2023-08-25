@@ -8,11 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
-public class BankingSimulatorDAO {
+public class AccountDAO {
     private EntityManager entityManager;
     private CreateParameter createParameter = new CreateParameter();
     private Account account = new Account();
-    public BankingSimulatorDAO(EntityManager entityManager) {
+
+    public AccountDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -26,13 +27,12 @@ public class BankingSimulatorDAO {
         String jpql = "SELECT A FROM Account A ";
         Query query = entityManager.createQuery(jpql, Account.class);
         List<Account> accounts = query.getResultList();
-
+        System.out.println("=".repeat(100));
+        System.out.printf("| %-4s | %-30s | %-17s | %-17s |%n", "ID", "Name", "Account type","Balance");
+        System.out.println("=".repeat(100));
         for (Account account : accounts) {
-            System.out.println(account.getId());
-            System.out.println(account.getFullName());
-            System.out.println(account.getAccountType());
 
-            showAccountTypes();
+            System.out.printf("| %-4s | %-30s | %-17s | %-17s |%n", account.getId(), account.getFullName(), account.getAccountType(),account.getBalance());
 
         }
 
@@ -41,7 +41,7 @@ public class BankingSimulatorDAO {
 
     public Account findID() {
         CreateParameter createParameter = new CreateParameter();
-        long id = createParameter.createInt("Type ID:");
+        long id = createParameter.createInt("Type ID: ");
         return entityManager.find(Account.class, id);
     }
 
@@ -63,11 +63,11 @@ public class BankingSimulatorDAO {
         }
     }
 
-    public  void Withdraw(){
+    public void Withdraw() {
         showAccounts();
         entityManager.getTransaction().begin();
         Account selectedAccount = findID();
-        if (selectedAccount != null){
+        if (selectedAccount != null) {
 
             double amount = selectedAccount.getBalance();
             double withdraw = createParameter.createInt("Insert the value what you want to withdraw.U$ ");
@@ -91,6 +91,6 @@ public class BankingSimulatorDAO {
             System.out.println(accountType.getId());
 
 
-
-        }}
+        }
+    }
 }
