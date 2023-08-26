@@ -5,6 +5,8 @@ The user also has the possibility to deposit and withdraw the value what they wa
 Their account can be of the types: debit , credit ,savings or both credit and debit.
 
 ## Working example 
+![image](https://github.com/GuilhermeBauer16/BankingSimulation/assets/123701893/25fcad3a-c31d-4b03-8c7a-39c154b005a4)
+
 
 ## Learnings 
 In this project I learned many thing related to Java.
