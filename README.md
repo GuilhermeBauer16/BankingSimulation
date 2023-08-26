@@ -17,7 +17,7 @@ In this project I advanced in my abillitys to search,
 I inproved my capacibilities related to logical programming.
 
 ## Funcionalities
-* Possibility to the user create a new account , divided between to:
+* Provide the user the possibility to create a new account,divided between:
     * Full name .
     * Sallary.
     * Account type:
