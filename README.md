@@ -15,3 +15,14 @@ I also learned how to modify the data , both when it  was increased and when it
 was decreased.Additionally,I learned how to use a foreign key togheterwith  JPA.
 In this project I advanced in my abillitys to search,
 I inproved my capacibilities related to logical programming.
+
+## Funcionalities
+* Possibility to the user create a new account , divided between to:
+    * Full name .
+    * Sallary.
+    * Account type:
+      * Debit.
+      * Credit.
+      * Savings.
+      * Credit and Debit.
+  
