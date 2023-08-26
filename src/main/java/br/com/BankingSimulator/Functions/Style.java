@@ -8,7 +8,7 @@ public class Style {
         System.out.println("[1]New account ");
         System.out.println("[2]Deposit ");
         System.out.println("[3]Withdraw money ");
-        System.out.println("[4]View Balance ");
+        System.out.println("[4]View accounts ");
         System.out.println("[5]Exit ");
         System.out.println(line(number));
 

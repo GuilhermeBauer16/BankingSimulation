@@ -6,6 +6,7 @@ import br.com.BankingSimulator.Functions.CreateParameter;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class AccountDAO {
@@ -22,7 +23,11 @@ public class AccountDAO {
         entityManager.persist(account);
 
     }
-
+    public double decimalFormat(double amount ){
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        decimalFormat.format(amount);
+        return amount;
+    }
     public void showAccounts() {
         String jpql = "SELECT A FROM Account A ";
         Query query = entityManager.createQuery(jpql, Account.class);
@@ -53,9 +58,12 @@ public class AccountDAO {
         if (selectedAccount != null) {
 //
             double amount = selectedAccount.getBalance();
-            double withdraw = createParameter.createDouble("Insert the value what you want to deposit.U$ ");
-            double newBalance = amount + withdraw;
-            selectedAccount.setBalance(newBalance);
+            double deposit = createParameter.createDouble("Insert the value what you want to deposit.U$ ");
+            decimalFormat(deposit);
+            decimalFormat(amount);
+            double newBalance = amount + deposit;
+            double formattedValue = decimalFormat(newBalance);
+            selectedAccount.setBalance(formattedValue);
             entityManager.getTransaction().commit();
         } else {
             entityManager.getTransaction().rollback();
@@ -72,7 +80,8 @@ public class AccountDAO {
             double amount = selectedAccount.getBalance();
             double withdraw = createParameter.createInt("Insert the value what you want to withdraw.U$ ");
             double newBalance = amount - withdraw;
-            selectedAccount.setBalance(newBalance);
+            double formattedValue = decimalFormat(newBalance);
+            selectedAccount.setBalance(formattedValue);
 
             entityManager.getTransaction().commit();
 

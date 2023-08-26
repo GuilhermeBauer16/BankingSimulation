@@ -26,6 +26,7 @@ public class Account {
         CreateParameter createParameter = new CreateParameter();
         this.fullName = createParameter.createString("Full name: ");
         this.salary = createParameter.createDouble("Salary U$: ");
+
         return this;
     }
 
@@ -65,6 +66,7 @@ public class Account {
 
     public void setSalary(double aDouble) {
     }
+
 }
 
 
