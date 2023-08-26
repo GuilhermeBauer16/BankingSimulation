@@ -25,6 +25,11 @@ I inproved my capacibilities related to logical programming.
       * Credit.
       * Savings.
       * Credit and Debit.
+        
 * Provide the user the possibility to deposit a value.
+  
 * Provide the user the possibility to withdraw a value.
+  
+## Author
+ www.linkedin.com/in/guilherme-bauer-desenvolvedor
   
