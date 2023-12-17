@@ -1,4 +1,4 @@
-# Banking simulation                                                
+# Banking simulation                                                       
 ## Objective 
 A banking system where the user can create a new account .
 The user also has the possibility to deposit and withdraw the value what they want.
