@@ -4,7 +4,7 @@ A banking system where the user can create a new account .
 The user also has the possibility to deposit and withdraw the value what they want.
 Their account can be of the types: debit , credit ,savings or both credit and debit.                           
    
-## Working example             
+## Working example                 
 ![image](https://github.com/GuilhermeBauer16/BankingSimulation/assets/123701893/25fcad3a-c31d-4b03-8c7a-39c154b005a4)
 
 
