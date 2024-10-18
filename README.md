@@ -12,7 +12,7 @@ https://github.com/GuilhermeBauer16/BankingSimulation/assets/123701893/8d32e2ae-
 
 
 
-## Learnings              
+## Learnings                   
 In this project I learned many thing related to Java.
 I Learned how to use JPA with Hibernarte in a much effective way, how to select 
 specific colluns of the database using the ID, how to insert  and modify the data.
